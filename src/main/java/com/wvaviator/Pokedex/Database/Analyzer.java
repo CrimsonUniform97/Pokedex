@@ -40,7 +40,7 @@ public class Analyzer {
 		
 		try {
 			dbm = c.getMetaData();
-			ResultSet rs = dbm.getTables(null, null, table, new String[] {"TABLE"});
+			ResultSet rs = dbm.getTables(null, null, table.toUpperCase(), new String[] {"TABLE"});
 			
 			if (!rs.next()) {
 				return false;
