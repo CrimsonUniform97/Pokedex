@@ -119,5 +119,29 @@ public class UUIDManager {
 		}
 		
 	}
+
+	public static String getUUID(String playerName) throws SQLException {
+		String name = playerName.toUpperCase();
+		String query = "SELECT uuid FROM players WHERE name = '" + name + "'";
+		
+		Statement stmt = null;
+		Connection c = Database.getConnection();
+		
+		try {
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			if(!rs.next()) {
+				return null;
+			} else {
+				return rs.getString("uuid");
+			}
+			
+		} finally {
+			stmt.close();
+			c.close();
+		}
+	}
 	
 }
