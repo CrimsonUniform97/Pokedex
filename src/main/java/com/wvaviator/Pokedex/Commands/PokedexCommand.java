@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.wvaviator.Pokedex.Logging.PokedexLog;
+import com.wvaviator.Pokedex.Users.Chat;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -47,9 +48,26 @@ public class PokedexCommand implements ICommand {
 	public void execute(ICommandSender sender, String[] args)
 			throws CommandException {
 		
+		if (args.length == 0) {
+			Chat.toChat(sender, Chat.noArgs);
+			return;
+		}
 		
+		if (args[0].equalsIgnoreCase("help")) {
+			CommandHelp.displayHelp(sender, args[1]);
+		}
 		
+		if (args[0].equalsIgnoreCase("print")) {
+			
+		}
 		
+		if (args[0].equalsIgnoreCase("display")) {
+			
+		}
+		
+		if (args[0].equalsIgnoreCase("purge")) {
+			
+		}
 		
 	}
 	

@@ -1,6 +1,7 @@
 package com.wvaviator.Pokedex.Logging;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -10,8 +11,8 @@ public class PokedexQuery {
 	private String searchUser;
 	private String searchPokemon;
 	private boolean searchIsShiny;
-	private String searchFromDate;
-	private String searchToDate;
+	private Timestamp searchFromDate;
+	private Timestamp searchToDate;
 	private String searchAction;
 	private String query;
 	
@@ -35,7 +36,7 @@ public class PokedexQuery {
 		this.searchAction = action;
 	}
 	
-	public void addDateRange(String from, String to) {
+	public void addDateRange(Timestamp from, Timestamp to) {
 		this.searchToDate = to;
 		this.searchFromDate = from;
 	}
@@ -44,19 +45,12 @@ public class PokedexQuery {
 		return this.searchUser;
 	}
 	
-	public String getFromDate() {
+	public Timestamp getFromDate() {
 		return this.searchFromDate;
 	}
 	
-	public String getToDate() {
-		return this.searchFromDate;
-	}
-	
-	public String getDate() {
-		if (this.searchFromDate.equals(this.searchToDate)) {
-			return this.searchFromDate;
-		}
-		return null;
+	public Timestamp getToDate() {
+		return this.searchToDate;
 	}
 	
 	public String getPokemon() {
@@ -76,7 +70,7 @@ public class PokedexQuery {
 		int count = 0;
 		if (this.searchUser != null) count++;
 		if (this.searchPokemon != null) count++;
-		if (this.searchDate != null) count++;
+		if (this.searchToDate != null) count++;
 		if (this.searchAction != null) count++;
 		if (this.searchIsShiny != false) count++;
 		return count;

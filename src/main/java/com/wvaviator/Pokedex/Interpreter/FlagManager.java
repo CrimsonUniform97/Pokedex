@@ -1,6 +1,7 @@
 package com.wvaviator.Pokedex.Interpreter;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -93,18 +94,27 @@ public class FlagManager {
 		}
 		
 		if (flag.equalsIgnoreCase("-d")) {
+			
+			Timestamp from = null;
+			Timestamp to = null;
+			
 			String input = args[0];
 			SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
-			String date = null;
+			Date date = null;
 			
 			try {
-				date = f.parse(input).toString();
+				date = f.parse(input);
 			} catch (ParseException e) {
 				Chat.toChat(querier, Chat.invalidDate);
 				return;
 			}
 			
-			pdq.addDateRange(date, date);		
+			long time = date.getTime();
+			
+			from = new Timestamp(time);
+			to = new Timestamp(time + 86400000);
+			
+			pdq.addDateRange(from, to);		
 			
 		}
 		
@@ -112,12 +122,12 @@ public class FlagManager {
 			
 			SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
 			
-			String from = null;
-			String to = null;
+			Timestamp from = null;
+			Timestamp to = null;
 			
 			try {
-			from = f.parse(args[0]).toString();
-			to = f.parse(args[1]).toString();
+			from = new Timestamp(f.parse(args[0]).getTime());
+			to = new Timestamp(f.parse(args[1]).getTime() + 86400000);
 			} catch (ParseException e) {
 				Chat.toChat(querier, Chat.invalidDate);
 			}
@@ -131,15 +141,25 @@ public class FlagManager {
 			
 			SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
 			
-			String from = null;
-			String to = null;
+			Timestamp from = null;
+			Timestamp to = null;
 			
 			long current = System.currentTimeMillis();
-			Date date = new Date(current);
-			to = f.format(date).toString();
-			////////
+			to = new Timestamp(current);
+			int daysBack = 0;
+			try {
+				daysBack = Integer.parseInt(args[0]);
+			} catch (NumberFormatException e) {
+				Chat.toChat(querier, Chat.badFlag);
+				return;
+			}
 			
+			long daysInMs = current - (daysBack * 86400000);
+			
+			from = new Timestamp(daysInMs);
+		
 			pdq.addDateRange(from, to);
+			
 		}
 		
 	}
