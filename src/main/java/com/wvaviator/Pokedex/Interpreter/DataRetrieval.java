@@ -15,30 +15,43 @@ public class DataRetrieval {
 		
 		Connection c = Database.getConnection();
 		Statement stmt = null;
-		String query = generateQueryString(pdq);
+		String query = generateQueryString(pdq, "SELECT * FROM pixelmonlogs");
 		
 		try {
 			
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
-			
-		
-		
-		
+	
 		} finally {
 			stmt.close();
 			c.close();
 		}
+	
+	}
+	
+	public static void deleteResults(PokedexQuery pdq) throws SQLException {
 		
+		Connection c = Database.getConnection();
+		Statement stmt = null;
+		String update = generateQueryString(pdq, "DELETE FROM pixelmonlogs");
 		
-		
+		try {
+			
+			stmt = c.createStatement();
+			stmt.executeUpdate(update);
+			
+		} finally {
+			
+			stmt.close();
+			c.close();
+		}
 		
 	}
 
-	private static String generateQueryString(PokedexQuery pdq) {
+	private static String generateQueryString(PokedexQuery pdq, String baseQuery) {
 		
-		String query = "SELECT * FROM pixelmonlogs";
+		String query = baseQuery;
 		int count = pdq.countQueries();
 		if (count == 0) return query;
 		query += " WHERE ";

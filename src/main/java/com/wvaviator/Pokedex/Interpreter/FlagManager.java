@@ -16,7 +16,7 @@ import com.wvaviator.Pokedex.Users.UUIDManager;
 
 public class FlagManager {
 	
-	public static void applyFlag(String flag, String[] args, PokedexQuery pdq, EntityPlayerMP querier) {
+	public static void applyFlag(String flag, String[] args, PokedexQuery pdq) {
 		
 		if (flag.equalsIgnoreCase("-u")) {
 			
@@ -30,7 +30,7 @@ public class FlagManager {
 			}
 			
 			if (uuid == null) {
-				Chat.toChat(querier, Chat.playerNotFound);
+				Chat.toChat(pdq.getSender(), Chat.playerNotFound);
 				return;
 			}
 			
@@ -48,7 +48,7 @@ public class FlagManager {
 			}
 			
 			if (matches == false) {
-				Chat.toChat(querier, Chat.pokeNotFound);
+				Chat.toChat(pdq.getSender(), Chat.pokeNotFound);
 				return;
 			}
 			
@@ -85,7 +85,7 @@ public class FlagManager {
 				return;
 			}
 			
-			Chat.toChat(querier, Chat.invalidAction);
+			Chat.toChat(pdq.getSender(), Chat.invalidAction);
 			
 		}
 		
@@ -105,7 +105,7 @@ public class FlagManager {
 			try {
 				date = f.parse(input);
 			} catch (ParseException e) {
-				Chat.toChat(querier, Chat.invalidDate);
+				Chat.toChat(pdq.getSender(), Chat.invalidDate);
 				return;
 			}
 			
@@ -129,7 +129,7 @@ public class FlagManager {
 			from = new Timestamp(f.parse(args[0]).getTime());
 			to = new Timestamp(f.parse(args[1]).getTime() + 86400000);
 			} catch (ParseException e) {
-				Chat.toChat(querier, Chat.invalidDate);
+				Chat.toChat(pdq.getSender(), Chat.invalidDate);
 			}
 			
 			pdq.addDateRange(from, to);
@@ -150,7 +150,7 @@ public class FlagManager {
 			try {
 				daysBack = Integer.parseInt(args[0]);
 			} catch (NumberFormatException e) {
-				Chat.toChat(querier, Chat.badFlag);
+				Chat.toChat(pdq.getSender(), Chat.badFlag);
 				return;
 			}
 			

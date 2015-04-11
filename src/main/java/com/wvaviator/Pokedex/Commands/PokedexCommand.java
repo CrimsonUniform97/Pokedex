@@ -4,7 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wvaviator.Pokedex.Interpreter.DisplayLogs;
+import com.wvaviator.Pokedex.Interpreter.FlagManager;
+import com.wvaviator.Pokedex.Interpreter.PrintLogs;
+import com.wvaviator.Pokedex.Interpreter.PurgeLogs;
 import com.wvaviator.Pokedex.Logging.PokedexLog;
+import com.wvaviator.Pokedex.Logging.PokedexQuery;
 import com.wvaviator.Pokedex.Users.Chat;
 
 import net.minecraft.command.CommandException;
@@ -57,16 +62,53 @@ public class PokedexCommand implements ICommand {
 			CommandHelp.displayHelp(sender, args[1]);
 		}
 		
+		PokedexQuery pdq = new PokedexQuery(sender);
+		
 		if (args[0].equalsIgnoreCase("print")) {
+			
+			for (int x = 2; x == args.length; x++) {			
+				String possibleFlag = args[x];
+				String[] possibleArgs = {args[x+1], args[x+2]};
+				
+				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
+			}
+			
+			try {
+				PrintLogs.printData(pdq);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 		}
 		
 		if (args[0].equalsIgnoreCase("display")) {
 			
+			
+			for (int x = 2; x == args.length; x++) {			
+				String possibleFlag = args[x];
+				String[] possibleArgs = {args[x+1], args[x+2]};
+				
+				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
+			}
+			
+			try {
+				DisplayLogs.displayData(pdq);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		if (args[0].equalsIgnoreCase("purge")) {
 			
+			for (int x = 2; x == args.length; x++) {			
+				String possibleFlag = args[x];
+				String[] possibleArgs = {args[x+1], args[x+2]};
+				
+				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
+			}
+			
+				PurgeLogs.purgeData(pdq);
 		}
 		
 	}

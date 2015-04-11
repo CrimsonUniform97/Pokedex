@@ -15,12 +15,12 @@ public class DisplayLogs {
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("MMM/dd/yyyy HH:mm:ss");
 
-	public static void displayData(ICommandSender sender, PokedexQuery pdq) throws SQLException {
+	public static void displayData(PokedexQuery pdq) throws SQLException {
 		
 		ResultSet rs = DataRetrieval.retreiveResults(pdq);
 		
 		if (!rs.next()) {
-			Chat.toChat(sender, Chat.noResults);
+			Chat.toChat(pdq.getSender(), Chat.noResults);
 			return;
 		}
 		
@@ -39,7 +39,7 @@ public class DisplayLogs {
 		
 		do {
 			
-			Chat.toChat(sender, displayInfo(rs));
+			Chat.toChat(pdq.getSender(), displayInfo(rs));
 			
 		} while (rs.next());
 		

@@ -3,11 +3,12 @@ package com.wvaviator.Pokedex.Logging;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class PokedexQuery {
 	
-	private EntityPlayerMP player;
+	private ICommandSender sender;
 	private String searchUser;
 	private String searchPokemon;
 	private boolean searchIsShiny;
@@ -16,8 +17,8 @@ public class PokedexQuery {
 	private String searchAction;
 	private String query;
 	
-	public PokedexQuery(EntityPlayerMP player) {
-		this.player = player;
+	public PokedexQuery(ICommandSender sender) {
+		this.sender = sender;
 	}
 	
 	public void addUser(String uuid) {
@@ -63,6 +64,10 @@ public class PokedexQuery {
 	
 	public String getAction() {
 		return this.searchAction;
+	}
+	
+	public ICommandSender getSender() {
+		return this.sender;
 	}
 
 

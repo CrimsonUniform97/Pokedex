@@ -44,6 +44,8 @@ public class Pokedex {
 		this.config.load();
 		PokedexConfiguration.loadConfig(this.config);
 		
+		configurationDirectory = e.getModConfigurationDirectory();
+		
 		logger = e.getModLog();
 		
 		//if (!(Loader.isModLoaded("Pixelmon"))) {

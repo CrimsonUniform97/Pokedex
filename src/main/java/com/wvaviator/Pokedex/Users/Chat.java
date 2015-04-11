@@ -20,6 +20,7 @@ public class Chat {
 	public static String noArgs = EnumChatFormatting.AQUA + Reference.NAME + " version " + Reference.VERSION + "\nUse "
 								+ EnumChatFormatting.GOLD + "/help" + EnumChatFormatting.AQUA + " for command information.";
 	public static String noResults = EnumChatFormatting.AQUA + "No results found!";
+	public static String deleting = EnumChatFormatting.AQUA + "Deleting entries with the specified parameters.";
 	
 	
 	
