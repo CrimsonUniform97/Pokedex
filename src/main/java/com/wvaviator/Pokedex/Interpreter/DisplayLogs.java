@@ -57,7 +57,6 @@ public class DisplayLogs {
 	private static String displayInfo(ResultSet rs) throws SQLException {
 		
 		String time = sdf.format(rs.getTimestamp("time"));
-		Pokedex.logger.info("Looking up username for " + rs.getString("uuid"));
 		String name = UUIDManager.getUsername(rs.getString("uuid"));
 		String pokemon = rs.getString("pokemon");
 		String action = rs.getString("action");

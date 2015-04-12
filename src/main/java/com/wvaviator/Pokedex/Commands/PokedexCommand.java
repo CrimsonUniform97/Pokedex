@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Interpreter.DisplayLogs;
 import com.wvaviator.Pokedex.Interpreter.FlagManager;
 import com.wvaviator.Pokedex.Interpreter.PrintLogs;
@@ -66,11 +67,11 @@ public class PokedexCommand implements ICommand {
 		
 		if (args[0].equalsIgnoreCase("print")) {
 			
-			for (int x = 1; x == (args.length - 1); x++) {			
+			int total = args.length - 1;
+			ArrayList<String> array = new ArrayList<String>();
+			for (int x = 1; x == total; x++) {
 				
-				
-				String possibleFlag = args[x];
-				ArrayList<String> array = new ArrayList<String>();
+				String flag = args[x];
 				
 				if (args.length >= x+2) {
 					if (args.length >= x+3) {
@@ -80,9 +81,8 @@ public class PokedexCommand implements ICommand {
 					}
 				}
 				
+				FlagManager.applyFlag(flag, array, pdq);
 				
-				
-				FlagManager.applyFlag(possibleFlag, array, pdq);
 			}
 			
 			try {
@@ -95,24 +95,31 @@ public class PokedexCommand implements ICommand {
 		
 		if (args[0].equalsIgnoreCase("display")) {
 			
+			int total = args.length - 1;
+			Pokedex.logger.info("Initiating display command");
+			ArrayList<String> array = new ArrayList<String>();
 			
-			for (int x = 1; x == (args.length - 1); x++) {			
+			for (int x = 0; x < args.length; x++) {
 				
+				String flag = args[x];
+				Pokedex.logger.info("Flag is " + flag);
 				
-				String possibleFlag = args[x];
-				ArrayList<String> array = new ArrayList<String>();
-				
-				if (args.length >= x+2) {
-					if (args.length >= x+3) {
+				if (args.length > x+1) {
+					Pokedex.logger.info("Args were greater than x+2");
+					if (args.length > x+2) {
+						Pokedex.logger.info("Args were greater than x+3");
+						array.add(args[x+1]);
 						array.add(args[x+2]);
+						Pokedex.logger.info("Adding " + args[x+1] + " and " + args[x+2] + " to array");
 					} else {
 						array.add(args[x+1]);
+						Pokedex.logger.info("Adding " + args[x+1] + " to array");
 					}
 				}
 				
+				//Pokedex.logger.info("Applying flag with " + flag + " and " + array.get(0) + " " + array.get(1));
+				FlagManager.applyFlag(flag, array, pdq);
 				
-				
-				FlagManager.applyFlag(possibleFlag, array, pdq);
 			}
 			
 			try {
@@ -125,11 +132,11 @@ public class PokedexCommand implements ICommand {
 		
 		if (args[0].equalsIgnoreCase("purge")) {
 			
-			for (int x = 1; x == (args.length - 1); x++) {			
+			int total = args.length - 1;
+			ArrayList<String> array = new ArrayList<String>();
+			for (int x = 1; x == total; x++) {
 				
-				
-				String possibleFlag = args[x];
-				ArrayList<String> array = new ArrayList<String>();
+				String flag = args[x];
 				
 				if (args.length >= x+2) {
 					if (args.length >= x+3) {
@@ -139,9 +146,8 @@ public class PokedexCommand implements ICommand {
 					}
 				}
 				
+				FlagManager.applyFlag(flag, array, pdq);
 				
-				
-				FlagManager.applyFlag(possibleFlag, array, pdq);
 			}
 			
 				PurgeLogs.purgeData(pdq);
