@@ -16,17 +16,10 @@ public class DataRetrieval {
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		String query = generateQueryString(pdq, "SELECT * FROM pixelmonlogs");
-		
-		try {
-			
-			stmt = c.createStatement();
+	
+			stmt = c.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
-	
-		} finally {
-			stmt.close();
-			c.close();
-		}
 	
 	}
 	

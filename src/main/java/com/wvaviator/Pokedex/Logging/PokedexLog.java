@@ -151,11 +151,11 @@ public class PokedexLog {
 
 	private static String receivedToString(ReceiveType r) {
 		
-		if (r == ReceiveType.Fossil) return "fossil";
-		if (r == ReceiveType.Starter) return "starter";
-		//if (r == ReceiveType.Halloween) return "halloween";
-		//if (r == ReceiveType.Christmas) return "christmas";
-		//if (r == ReceiveType.Command) return "command";
+		if (r.equals(ReceiveType.Fossil)) return "fossil";
+		if (r.equals(ReceiveType.Starter)) return "starter";
+		//if (r.equals(ReceiveType.Halloween)) return "halloween";
+		//if (r.equals(ReceiveType.Christmas)) return "christmas";
+		//if (r.equals(ReceiveType.Command)) return "command";
 		
 		return null;
 	}

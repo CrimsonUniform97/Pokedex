@@ -66,9 +66,21 @@ public class PokedexCommand implements ICommand {
 		
 		if (args[0].equalsIgnoreCase("print")) {
 			
-			for (int x = 2; x == args.length; x++) {			
+			for (int x = 1; x == (args.length - 1); x++) {			
+				
 				String possibleFlag = args[x];
-				String[] possibleArgs = {args[x+1], args[x+2]};
+				List argList;
+				argList = new ArrayList();
+				
+				if (args.length >= x+2) {
+					argList.add(args[x+1]);
+				}
+				
+				if (args.length >= x+3) {
+					argList.add(args[x+2]);
+				}
+				
+				String[] possibleArgs = (String[]) argList.toArray();
 				
 				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
 			}
@@ -84,9 +96,21 @@ public class PokedexCommand implements ICommand {
 		if (args[0].equalsIgnoreCase("display")) {
 			
 			
-			for (int x = 2; x == args.length; x++) {			
+			for (int x = 1; x == (args.length - 1); x++) {			
+				
+				boolean oneArg = false;
+				boolean twoArgs = false;
 				String possibleFlag = args[x];
-				String[] possibleArgs = {args[x+1], args[x+2]};
+				
+				
+				if (args.length >= x+2) {
+					oneArg = true;
+				}
+				
+				if (args.length >= x+3) {
+					twoArgs = true;
+				}
+				
 				
 				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
 			}
@@ -101,9 +125,21 @@ public class PokedexCommand implements ICommand {
 		
 		if (args[0].equalsIgnoreCase("purge")) {
 			
-			for (int x = 2; x == args.length; x++) {			
+			for (int x = 1; x == (args.length - 1); x++) {			
+				
 				String possibleFlag = args[x];
-				String[] possibleArgs = {args[x+1], args[x+2]};
+				List argList;
+				argList = new ArrayList();
+				
+				if (args.length >= x) {
+					argList.add(args[x+1]);
+				}
+				
+				if (args.length >= x+1) {
+					argList.add(args[x+2]);
+				}
+				
+				String[] possibleArgs = (String[]) argList.toArray();
 				
 				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
 			}

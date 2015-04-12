@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Database.Database;
 
 public class UUIDManager {
@@ -21,6 +22,12 @@ public class UUIDManager {
 			
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
+			
+			if (!rs.next()) {
+				Pokedex.logger.error("Player not found");
+				return null;
+			}
+			
 			String username = rs.getString("name").toUpperCase();
 
 			return username;

@@ -5,17 +5,22 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.EnumChatFormatting;
 
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Configuration.PokedexConfiguration;
+import com.wvaviator.Pokedex.Database.Database;
 import com.wvaviator.Pokedex.Logging.PokedexQuery;
 import com.wvaviator.Pokedex.Users.Chat;
 import com.wvaviator.Pokedex.Users.UUIDManager;
 
 public class DisplayLogs {
 
-	static SimpleDateFormat sdf = new SimpleDateFormat("MMM/dd/yyyy HH:mm:ss");
+	static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 
 	public static void displayData(PokedexQuery pdq) throws SQLException {
+		
+		try {
 		
 		ResultSet rs = DataRetrieval.retreiveResults(pdq);
 		
@@ -43,11 +48,16 @@ public class DisplayLogs {
 			
 		} while (rs.next());
 		
+		} finally {
+			Database.closeConnection();
+		}
+		
 	}
 
 	private static String displayInfo(ResultSet rs) throws SQLException {
 		
 		String time = sdf.format(rs.getTimestamp("time"));
+		Pokedex.logger.info("Looking up username for " + rs.getString("uuid"));
 		String name = UUIDManager.getUsername(rs.getString("uuid"));
 		String pokemon = rs.getString("pokemon");
 		String action = rs.getString("action");
@@ -60,7 +70,7 @@ public class DisplayLogs {
 		if (action.equalsIgnoreCase("received") || action.equalsIgnoreCase("obtained")) additionalValue = " from";
 		if (action.equalsIgnoreCase("traded")) additionalValue = " to";
 		
-		String display = time + " " + name + " " + action + " " + shiny + pokemon + additionalValue + " " + additional;
+		String display = EnumChatFormatting.AQUA + time + " " + name + " " + action + " " + shiny + pokemon + additionalValue + " " + additional;
 		return display;
 		
 	}

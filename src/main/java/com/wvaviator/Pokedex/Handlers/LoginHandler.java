@@ -5,19 +5,20 @@ import java.sql.SQLException;
 import com.wvaviator.Pokedex.Users.UUIDManager;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 public class LoginHandler {
 	
 	@SubscribeEvent
-	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e) {
+	public void onPlayerLogin(EntityJoinWorldEvent e) {
 		
-		if (!(e.player instanceof EntityPlayerMP)) {
+		if (!(e.entity instanceof EntityPlayerMP)) {
 			return;
 		}
 		
-		EntityPlayerMP player = (EntityPlayerMP) e.player;
+		EntityPlayerMP player = (EntityPlayerMP) e.entity;
 		
 		try {
 			
