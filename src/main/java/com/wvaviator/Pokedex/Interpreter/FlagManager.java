@@ -21,7 +21,7 @@ public class FlagManager {
 		
 		if (flag.equalsIgnoreCase("-u")) {
 			
-			String playerName = args.get(1);
+			String playerName = args.get(0);
 			String uuid = null;
 			
 			try {
@@ -42,7 +42,7 @@ public class FlagManager {
 		
 		if (flag.equalsIgnoreCase("-p")) {
 			
-			String pokemon = args.get(1);
+			String pokemon = args.get(0);
 			String poke = null;
 			
 			try {
@@ -59,7 +59,7 @@ public class FlagManager {
 		
 		if (flag.equalsIgnoreCase("-a")) {
 			
-			String action = args.get(1);
+			String action = args.get(0);
 			Pokedex.logger.info("Action is " + action);
 			
 			if (action.equalsIgnoreCase("captured")) {
@@ -101,7 +101,7 @@ public class FlagManager {
 			Timestamp from = null;
 			Timestamp to = null;
 			
-			String input = args.get(1);
+			String input = args.get(0);
 			SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
 			Date date = null;
 			
@@ -130,8 +130,8 @@ public class FlagManager {
 			Timestamp to = null;
 			
 			try {
-			from = new Timestamp(f.parse(args.get(1)).getTime());
-			to = new Timestamp(f.parse(args.get(2)).getTime() + 86400000);
+			from = new Timestamp(f.parse(args.get(0)).getTime());
+			to = new Timestamp(f.parse(args.get(1)).getTime() + 86400000);
 			} catch (ParseException e) {
 				Chat.toChat(pdq.getSender(), Chat.invalidDate);
 				pdq.setCanceled();
@@ -154,7 +154,7 @@ public class FlagManager {
 			to = new Timestamp(current);
 			int daysBack = 0;
 			try {
-				daysBack = Integer.parseInt(args.get(1));
+				daysBack = Integer.parseInt(args.get(0));
 			} catch (NumberFormatException e) {
 				Chat.toChat(pdq.getSender(), Chat.badFlag);
 				pdq.setCanceled();

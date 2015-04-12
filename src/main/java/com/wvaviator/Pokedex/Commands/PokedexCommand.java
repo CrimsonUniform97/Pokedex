@@ -64,22 +64,25 @@ public class PokedexCommand implements ICommand {
 				
 				CommandHelp.displayHelp(sender, null);
 				return;
-			}
+				
+			} else {
 			
-			CommandHelp.displayHelp(sender, args[1]);
+				CommandHelp.displayHelp(sender, args[1]);
+				
+			}
 		}
 		
 		PokedexQuery pdq = new PokedexQuery(sender);
 		
 		if (args[0].equalsIgnoreCase("print")) {
 			
-			ArrayList<String> array = new ArrayList<String>();
 			
 			for (int x = 0; x < args.length; x++) {
 				
 				String flag = args[x];
 				int first = x + 1;
 				int second = x + 2;
+				ArrayList<String> array = new ArrayList<String>();
 				
 				if (args.length > first) {
 					if (args.length > second) {
@@ -105,13 +108,13 @@ public class PokedexCommand implements ICommand {
 		
 		if (args[0].equalsIgnoreCase("display")) {
 			
-			ArrayList<String> array = new ArrayList<String>();
 			
 			for (int x = 0; x < args.length; x++) {
 				
 				String flag = args[x];
 				int first = x + 1;
 				int second = x + 2;
+				ArrayList<String> array = new ArrayList<String>();
 				
 				if (args.length > first) {
 					if (args.length > second) {
@@ -137,13 +140,13 @@ public class PokedexCommand implements ICommand {
 		
 		if (args[0].equalsIgnoreCase("purge")) {
 			
-			ArrayList<String> array = new ArrayList<String>();
 			
 			for (int x = 0; x < args.length; x++) {
 				
 				String flag = args[x];
 				int first = x + 1;
 				int second = x + 2;
+				ArrayList<String> array = new ArrayList<String>();
 				
 				if (args.length > first) {
 					if (args.length > second) {

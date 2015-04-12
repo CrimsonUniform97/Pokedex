@@ -131,10 +131,12 @@ public class PokedexLog {
 		String action2 = "obtained";
 		String poke = pokemon.getString("Name");
 		String poke2 = pokemon2.getString("Name");
+		String additional = null;
+		String additional2 = null;
 		
 		try {
-			String additional = UUIDManager.getUsername(uuid2);
-			String additional2 = UUIDManager.getUsername(uuid);
+			additional = UUIDManager.getUsername(uuid2);
+			additional2 = UUIDManager.getUsername(uuid);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
