@@ -68,21 +68,21 @@ public class PokedexCommand implements ICommand {
 			
 			for (int x = 1; x == (args.length - 1); x++) {			
 				
+				
 				String possibleFlag = args[x];
-				List argList;
-				argList = new ArrayList();
+				ArrayList<String> array = new ArrayList<String>();
 				
 				if (args.length >= x+2) {
-					argList.add(args[x+1]);
+					if (args.length >= x+3) {
+						array.add(args[x+2]);
+					} else {
+						array.add(args[x+1]);
+					}
 				}
 				
-				if (args.length >= x+3) {
-					argList.add(args[x+2]);
-				}
 				
-				String[] possibleArgs = (String[]) argList.toArray();
 				
-				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
+				FlagManager.applyFlag(possibleFlag, array, pdq);
 			}
 			
 			try {
@@ -98,21 +98,21 @@ public class PokedexCommand implements ICommand {
 			
 			for (int x = 1; x == (args.length - 1); x++) {			
 				
-				boolean oneArg = false;
-				boolean twoArgs = false;
-				String possibleFlag = args[x];
 				
+				String possibleFlag = args[x];
+				ArrayList<String> array = new ArrayList<String>();
 				
 				if (args.length >= x+2) {
-					oneArg = true;
+					if (args.length >= x+3) {
+						array.add(args[x+2]);
+					} else {
+						array.add(args[x+1]);
+					}
 				}
 				
-				if (args.length >= x+3) {
-					twoArgs = true;
-				}
 				
 				
-				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
+				FlagManager.applyFlag(possibleFlag, array, pdq);
 			}
 			
 			try {
@@ -127,21 +127,21 @@ public class PokedexCommand implements ICommand {
 			
 			for (int x = 1; x == (args.length - 1); x++) {			
 				
+				
 				String possibleFlag = args[x];
-				List argList;
-				argList = new ArrayList();
+				ArrayList<String> array = new ArrayList<String>();
 				
-				if (args.length >= x) {
-					argList.add(args[x+1]);
+				if (args.length >= x+2) {
+					if (args.length >= x+3) {
+						array.add(args[x+2]);
+					} else {
+						array.add(args[x+1]);
+					}
 				}
 				
-				if (args.length >= x+1) {
-					argList.add(args[x+2]);
-				}
 				
-				String[] possibleArgs = (String[]) argList.toArray();
 				
-				FlagManager.applyFlag(possibleFlag, possibleArgs, pdq);
+				FlagManager.applyFlag(possibleFlag, array, pdq);
 			}
 			
 				PurgeLogs.purgeData(pdq);

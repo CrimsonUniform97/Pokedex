@@ -16,11 +16,11 @@ import com.wvaviator.Pokedex.Users.UUIDManager;
 
 public class FlagManager {
 	
-	public static void applyFlag(String flag, String[] args, PokedexQuery pdq) {
+	public static void applyFlag(String flag, ArrayList<String> args, PokedexQuery pdq) {
 		
 		if (flag.equalsIgnoreCase("-u")) {
 			
-			String playerName = args[0];
+			String playerName = args.get(0);
 			String uuid = null;
 			
 			try {
@@ -40,7 +40,7 @@ public class FlagManager {
 		
 		if (flag.equalsIgnoreCase("-p")) {
 			
-			String pokemon = args[0];
+			String pokemon = args.get(0);
 			boolean matches = false;
 			
 			for (EnumPokemon p : EnumPokemon.values()) {
@@ -58,7 +58,7 @@ public class FlagManager {
 		
 		if (flag.equalsIgnoreCase("-a")) {
 			
-			String action = args[0];
+			String action = args.get(0);
 			
 			if (action.equalsIgnoreCase("captured")) {
 				pdq.addAction(action.toLowerCase());
@@ -98,7 +98,7 @@ public class FlagManager {
 			Timestamp from = null;
 			Timestamp to = null;
 			
-			String input = args[0];
+			String input = args.get(0);
 			SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
 			Date date = null;
 			
@@ -126,8 +126,8 @@ public class FlagManager {
 			Timestamp to = null;
 			
 			try {
-			from = new Timestamp(f.parse(args[0]).getTime());
-			to = new Timestamp(f.parse(args[1]).getTime() + 86400000);
+			from = new Timestamp(f.parse(args.get(0)).getTime());
+			to = new Timestamp(f.parse(args.get(1)).getTime() + 86400000);
 			} catch (ParseException e) {
 				Chat.toChat(pdq.getSender(), Chat.invalidDate);
 			}
@@ -148,7 +148,7 @@ public class FlagManager {
 			to = new Timestamp(current);
 			int daysBack = 0;
 			try {
-				daysBack = Integer.parseInt(args[0]);
+				daysBack = Integer.parseInt(args.get(0));
 			} catch (NumberFormatException e) {
 				Chat.toChat(pdq.getSender(), Chat.badFlag);
 				return;
