@@ -50,21 +50,21 @@ public class DataRetrieval {
 		query += " WHERE ";
 		
 		if (pdq.getUUID() != null) {
-			query += "uuid = " + pdq.getUUID();
+			query += "uuid = '" + pdq.getUUID() + "'";
 			count--;
 			if (count == 0) return query;
 			query += " AND ";
 		}
 		
 		if (pdq.getPokemon() != null) {
-			query += "pokemon = " + pdq.getPokemon();
+			query += "pokemon = '" + pdq.getPokemon() + "'";
 			count--;
 			if (count == 0) return query;
 			query += " AND ";
 		}
 		
 		if (pdq.getAction() != null) {
-			query += "action = " + pdq.getAction();
+			query += "action = '" + pdq.getAction() + "'";
 			count--;
 			if (count == 0) return query;
 			query += " AND ";
@@ -78,7 +78,7 @@ public class DataRetrieval {
 		}
 		
 		if (pdq.getToDate() != null) {
-			query += "time > " + pdq.getFromDate().toString() + " AND time < " + pdq.getToDate().toString();
+			query += "time > '" + pdq.getFromDate().toString() + "' AND time < '" + pdq.getToDate().toString() + "'";
 		}
 		
 		return null;

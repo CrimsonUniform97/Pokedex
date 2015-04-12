@@ -16,6 +16,7 @@ public class PokedexQuery {
 	private Timestamp searchToDate;
 	private String searchAction;
 	private String query;
+	private boolean canceled;
 	
 	public PokedexQuery(ICommandSender sender) {
 		this.sender = sender;
@@ -69,7 +70,14 @@ public class PokedexQuery {
 	public ICommandSender getSender() {
 		return this.sender;
 	}
-
+	
+	public void setCanceled() {
+		this.canceled = true;
+	}
+	
+	public boolean isCanceled() {
+		return this.canceled;
+	}
 
 	public int countQueries() {
 		int count = 0;

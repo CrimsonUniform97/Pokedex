@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import com.pixelmonmod.pixelmon.api.events.ReceiveType;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import com.wvaviator.Pokedex.Database.Database;
+import com.wvaviator.Pokedex.Users.UUIDManager;
 
 public class PokedexLog {
 	
@@ -130,8 +131,14 @@ public class PokedexLog {
 		String action2 = "obtained";
 		String poke = pokemon.getString("Name");
 		String poke2 = pokemon2.getString("Name");
-		String additional = uuid2;
-		String additional2 = uuid;
+		
+		try {
+			String additional = UUIDManager.getUsername(uuid2);
+			String additional2 = UUIDManager.getUsername(uuid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		boolean isShiny = pokemon.getBoolean("IsShiny");
 		boolean isShiny2 = pokemon2.getBoolean("IsShiny");
 		
@@ -151,8 +158,8 @@ public class PokedexLog {
 
 	private static String receivedToString(ReceiveType r) {
 		
-		if (r.equals(ReceiveType.Fossil)) return "fossil";
-		if (r.equals(ReceiveType.Starter)) return "starter";
+		if (r == ReceiveType.Fossil) return "fossil";
+		if (r == ReceiveType.Starter) return "starter";
 		//if (r.equals(ReceiveType.Halloween)) return "halloween";
 		//if (r.equals(ReceiveType.Christmas)) return "christmas";
 		//if (r.equals(ReceiveType.Command)) return "command";

@@ -10,6 +10,7 @@ import java.util.Date;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 import com.pixelmonmod.pixelmon.enums.EnumPokemon;
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Logging.PokedexQuery;
 import com.wvaviator.Pokedex.Users.Chat;
 import com.wvaviator.Pokedex.Users.UUIDManager;
@@ -20,7 +21,7 @@ public class FlagManager {
 		
 		if (flag.equalsIgnoreCase("-u")) {
 			
-			String playerName = args.get(0);
+			String playerName = args.get(1);
 			String uuid = null;
 			
 			try {
@@ -31,6 +32,7 @@ public class FlagManager {
 			
 			if (uuid == null) {
 				Chat.toChat(pdq.getSender(), Chat.playerNotFound);
+				pdq.setCanceled();
 				return;
 			}
 			
@@ -40,25 +42,25 @@ public class FlagManager {
 		
 		if (flag.equalsIgnoreCase("-p")) {
 			
-			String pokemon = args.get(0);
-			boolean matches = false;
+			String pokemon = args.get(1);
+			String poke = null;
 			
-			for (EnumPokemon p : EnumPokemon.values()) {
-				if (pokemon.equalsIgnoreCase(p.name)) matches = true;
-			}
-			
-			if (matches == false) {
+			try {
+				poke = EnumPokemon.getFromNameAnyCase(pokemon).name;
+			} catch (NullPointerException e) {
 				Chat.toChat(pdq.getSender(), Chat.pokeNotFound);
+				pdq.setCanceled();
 				return;
 			}
 			
-			pdq.addPokemon(pokemon);
+			pdq.addPokemon(poke);
 			
 		}
 		
 		if (flag.equalsIgnoreCase("-a")) {
 			
-			String action = args.get(0);
+			String action = args.get(1);
+			Pokedex.logger.info("Action is " + action);
 			
 			if (action.equalsIgnoreCase("captured")) {
 				pdq.addAction(action.toLowerCase());
@@ -86,6 +88,7 @@ public class FlagManager {
 			}
 			
 			Chat.toChat(pdq.getSender(), Chat.invalidAction);
+			pdq.setCanceled();
 			
 		}
 		
@@ -98,7 +101,7 @@ public class FlagManager {
 			Timestamp from = null;
 			Timestamp to = null;
 			
-			String input = args.get(0);
+			String input = args.get(1);
 			SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
 			Date date = null;
 			
@@ -106,6 +109,7 @@ public class FlagManager {
 				date = f.parse(input);
 			} catch (ParseException e) {
 				Chat.toChat(pdq.getSender(), Chat.invalidDate);
+				pdq.setCanceled();
 				return;
 			}
 			
@@ -126,10 +130,12 @@ public class FlagManager {
 			Timestamp to = null;
 			
 			try {
-			from = new Timestamp(f.parse(args.get(0)).getTime());
-			to = new Timestamp(f.parse(args.get(1)).getTime() + 86400000);
+			from = new Timestamp(f.parse(args.get(1)).getTime());
+			to = new Timestamp(f.parse(args.get(2)).getTime() + 86400000);
 			} catch (ParseException e) {
 				Chat.toChat(pdq.getSender(), Chat.invalidDate);
+				pdq.setCanceled();
+				return;
 			}
 			
 			pdq.addDateRange(from, to);
@@ -148,9 +154,10 @@ public class FlagManager {
 			to = new Timestamp(current);
 			int daysBack = 0;
 			try {
-				daysBack = Integer.parseInt(args.get(0));
+				daysBack = Integer.parseInt(args.get(1));
 			} catch (NumberFormatException e) {
 				Chat.toChat(pdq.getSender(), Chat.badFlag);
+				pdq.setCanceled();
 				return;
 			}
 			
