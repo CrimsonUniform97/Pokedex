@@ -48,5 +48,43 @@ public class Construction {
 		}
 				
 	}
+	
+	public static void establishTotalsTable() throws SQLException {
+		
+		String update = "CREATE TABLE totals (uuid VARCHAR(40), captured INT NOT NULL, deleted INT NOT NULL, received INT NOT NULL, traded INT NOT NULL, evolved INT NOT NULL, shiny INT NOT NULL, legendary INT NOT NULL, PRIMARY KEY (uuid))";
+		Connection c = Database.getConnection();
+		Statement stmt = null;
+		
+		try {
+			
+			stmt = c.createStatement();
+			stmt.executeUpdate(update);
+
+		} finally {
+			stmt.close();
+			c.close();
+		}
+		
+		addServerTotals();
+		
+	}
+
+	private static void addServerTotals() throws SQLException {
+		
+		String update = "INSERT INTO totals VALUES ('SERVER', 0, 0, 0, 0, 0, 0, 0)";
+		Connection c = Database.getConnection();
+		Statement stmt = null;
+		
+		try {
+			
+			stmt = c.createStatement();
+			stmt.executeUpdate(update);
+
+		} finally {
+			stmt.close();
+			c.close();
+		}
+		
+	}
 
 }

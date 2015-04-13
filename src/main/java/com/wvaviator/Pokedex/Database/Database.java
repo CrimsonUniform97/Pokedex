@@ -62,15 +62,13 @@ public class Database {
 		
 		if (Analyzer.playersTableExists() == false) {
 			
-			
 			try {
 				
 				Construction.establishPlayerTable();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
-			
+			}			
 			
 		}
 		
@@ -79,6 +77,18 @@ public class Database {
 			try {
 				
 				Construction.establishLogTable();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if (Analyzer.totalsTableExists() == false) {
+			
+			try {
+				
+				Construction.establishTotalsTable();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

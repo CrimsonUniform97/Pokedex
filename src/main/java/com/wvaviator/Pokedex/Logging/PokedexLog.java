@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -11,7 +12,9 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.pixelmonmod.pixelmon.api.events.ReceiveType;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
+import com.pixelmonmod.pixelmon.enums.EnumPokemon;
 import com.wvaviator.Pokedex.Database.Database;
+import com.wvaviator.Pokedex.Totals.LogTotals;
 import com.wvaviator.Pokedex.Users.UUIDManager;
 
 public class PokedexLog {
@@ -54,11 +57,13 @@ public class PokedexLog {
 		String poke = pokemon.baseStats.pokemon + "";
 		String additional = ".";
 		boolean isShiny = pokemon.getIsShiny();
+		boolean isLegendary = getIsLegendary(pokemon);
 		
 		
 		try {
 			
 			storeData(uuid, action, poke, additional, isShiny);
+			LogTotals.addCaptured(uuid, isShiny, isLegendary);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,6 +71,15 @@ public class PokedexLog {
 		
 	}
 	
+	private static boolean getIsLegendary(EntityPixelmon pokemon) {
+		ArrayList<String> legendaries = EnumPokemon.legendaries;
+		String pokeToCheck = pokemon.baseStats.pokemon + "";
+		for (String poke : legendaries) {
+			if (pokeToCheck.equalsIgnoreCase(poke)) return true;
+		}
+		return false;
+	}
+
 	public static void storeDeleted(EntityPlayerMP player, NBTTagCompound poke) {
 		
 		String uuid = player.getUniqueID().toString();
@@ -78,6 +92,7 @@ public class PokedexLog {
 		try {
 			
 			storeData(uuid, action, pokemon, additional, isShiny);
+			LogTotals.addDeleted(uuid);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,6 +112,7 @@ public class PokedexLog {
 		try {
 			
 			storeData(uuid, action, pokemon, additional, isShiny);
+			LogTotals.addEvolved(uuid);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,6 +132,7 @@ public class PokedexLog {
 		try {
 			
 			storeData(uuid, action, poke, additional, isShiny);
+			LogTotals.addReceived(uuid);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,6 +168,8 @@ public class PokedexLog {
 			storeData(uuid, action2, poke2, additional, isShiny2);
 			storeData(uuid2, action, poke2, additional2, isShiny2);
 			storeData(uuid2, action2, poke, additional2, isShiny);
+			LogTotals.addTraded(uuid2);
+			LogTotals.addTraded(uuid);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

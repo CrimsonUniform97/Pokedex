@@ -33,6 +33,19 @@ public class Analyzer {
 		
 	}
 	
+	public static boolean totalsTableExists() {
+		
+		try {
+			
+			return tableExists("totals");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	private static boolean tableExists(String table) throws SQLException {
 		
 		Connection c = Database.getConnection();
