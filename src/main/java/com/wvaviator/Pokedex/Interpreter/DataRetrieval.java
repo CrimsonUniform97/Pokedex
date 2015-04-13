@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Database.Database;
 import com.wvaviator.Pokedex.Logging.PokedexQuery;
 
@@ -16,6 +18,7 @@ public class DataRetrieval {
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		String query = generateQueryString(pdq, "SELECT * FROM pixelmonlogs");
+		Pokedex.logger.info(query + " ");
 	
 			stmt = c.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = stmt.executeQuery(query);
@@ -78,7 +81,11 @@ public class DataRetrieval {
 		}
 		
 		if (pdq.getToDate() != null) {
-			query += "time > '" + pdq.getFromDate().toString() + "' AND time < '" + pdq.getToDate().toString() + "'";
+			String from = pdq.getFromDate().toString();
+			String to = pdq.getToDate().toString();
+			
+			query += "time > '" + from + "' AND time < '" + to + "'";
+			return query;
 		}
 		
 		return null;

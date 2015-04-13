@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumChatFormatting;
 
 import com.wvaviator.Pokedex.Pokedex;
@@ -44,7 +45,7 @@ public class DisplayLogs {
 		
 		do {
 			
-			Chat.toChat(pdq.getSender(), displayInfo(rs));
+			Chat.toChat(pdq.getSender(), displayInfo(rs, pdq));
 			
 		} while (rs.next());
 		
@@ -54,7 +55,7 @@ public class DisplayLogs {
 		
 	}
 
-	private static String displayInfo(ResultSet rs) throws SQLException {
+	private static String displayInfo(ResultSet rs, PokedexQuery pdq) throws SQLException {
 		
 		String time = sdf.format(rs.getTimestamp("time"));
 		String name = UUIDManager.getUsername(rs.getString("uuid"));
@@ -66,11 +67,16 @@ public class DisplayLogs {
 		String shiny = "";
 		if (shinyB == true) shiny = "Shiny ";
 		String additionalValue = "";
-		if (action.equalsIgnoreCase("received") || action.equalsIgnoreCase("obtained")) additionalValue = " from";
+		if (action.equalsIgnoreCase("obtained")) additionalValue = " from";
+		if (action.equalsIgnoreCase("received")) additionalValue = " by";
 		if (action.equalsIgnoreCase("traded")) additionalValue = " to";
+		if (action.equalsIgnoreCase("evolved")) additionalValue = " into";
 		
-		String display = EnumChatFormatting.AQUA + time + " " + name + " " + action + " " + shiny + pokemon + additionalValue + " " + additional;
-		return display;
+		String display = EnumChatFormatting.AQUA + time + " " + name + " " + action + " " + shiny + pokemon + EnumChatFormatting.AQUA + additionalValue + " " + additional;
+		String displayConsole = time + " " + name + " " + action + " " + shiny + pokemon + additionalValue + " " + additional;
+		
+		if (pdq.getSender() instanceof EntityPlayerMP) return display;
+		return displayConsole;
 		
 	}
 	

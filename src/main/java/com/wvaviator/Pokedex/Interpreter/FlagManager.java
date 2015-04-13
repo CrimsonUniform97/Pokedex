@@ -152,6 +152,7 @@ public class FlagManager {
 			
 			long current = System.currentTimeMillis();
 			to = new Timestamp(current);
+			Pokedex.logger.info("To set to " + to.toString());
 			int daysBack = 0;
 			try {
 				daysBack = Integer.parseInt(args.get(0));
@@ -164,6 +165,7 @@ public class FlagManager {
 			long daysInMs = current - (daysBack * 86400000);
 			
 			from = new Timestamp(daysInMs);
+			Pokedex.logger.info("From set to " + from.toString());
 		
 			pdq.addDateRange(from, to);
 			
