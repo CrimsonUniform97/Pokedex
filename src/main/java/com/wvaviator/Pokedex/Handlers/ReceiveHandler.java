@@ -14,7 +14,9 @@ public class ReceiveHandler {
 	@SubscribeEvent
 	public void onPixelmonReceived(PixelmonRecievedEvent e) {
 		
-		if (e.receiveType == ReceiveType.PokeBall) return;
+		if (e.receiveType == ReceiveType.PokeBall) {
+			return;
+		}
 		if (!(e.reciever instanceof EntityPlayerMP)) return;
 		
 		EntityPlayerMP player = (EntityPlayerMP) e.reciever;

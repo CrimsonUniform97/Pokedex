@@ -51,7 +51,7 @@ public class PokedexLog {
 		
 		String uuid = player.getUniqueID().toString();
 		String action = "captured";
-		String poke = pokemon.getNickname();
+		String poke = pokemon.baseStats.pokemon + "";
 		String additional = ".";
 		boolean isShiny = pokemon.getIsShiny();
 		
@@ -89,8 +89,8 @@ public class PokedexLog {
 		
 		String uuid = player.getUniqueID().toString();
 		String action = "evolved";
-		String pokemon = pre.getNickname();
-		String additional = post.getNickname();
+		String pokemon = pre.baseStats.pokemon + "";
+		String additional = post.baseStats.pokemon + "";
 		boolean isShiny = pre.getIsShiny();
 		
 		
@@ -108,7 +108,7 @@ public class PokedexLog {
 		
 		String uuid = player.getUniqueID().toString();
 		String action = "received";
-		String poke = pokemon.getNickname();
+		String poke = pokemon.baseStats.pokemon + "";
 		String additional = receivedToString(received);
 		boolean isShiny = pokemon.getIsShiny();
 		

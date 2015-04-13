@@ -13,8 +13,6 @@ public class CaptureHandler {
 	@SubscribeEvent
 	public void onPixelmonCapture(PixelmonCaptureEvent e) {
 		
-		Pokedex.logger.info(e.player.getName() + " captured a " + e.capturedPixelmon.getNickname());
-		
 		EntityPixelmon pokemon = e.capturedPixelmon;
 		EntityPlayerMP player = (EntityPlayerMP) e.player;
 		
