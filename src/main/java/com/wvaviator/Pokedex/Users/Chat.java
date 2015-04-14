@@ -24,6 +24,10 @@ public class Chat {
 	public static String totalsHelp = EnumChatFormatting.AQUA + "Commands for finding player or server "
 								+ "totals: \n" + EnumChatFormatting.GOLD + "/pokedex totals <playername>\n" + 
 								EnumChatFormatting.GOLD + "/pokedex totals server";
+	public static String topHelp = EnumChatFormatting.AQUA + "The category specified for " + EnumChatFormatting.GOLD +
+									"/pokedex top " + EnumChatFormatting.AQUA + "does not exist.\n" + EnumChatFormatting.AQUA +
+									"Please use " + EnumChatFormatting.GOLD + "/help top " + EnumChatFormatting.AQUA +
+									"for all available categories.";
 	
 	
 	

@@ -11,6 +11,7 @@ import com.wvaviator.Pokedex.Interpreter.PrintLogs;
 import com.wvaviator.Pokedex.Interpreter.PurgeLogs;
 import com.wvaviator.Pokedex.Logging.PokedexLog;
 import com.wvaviator.Pokedex.Logging.PokedexQuery;
+import com.wvaviator.Pokedex.Top.DisplayTop;
 import com.wvaviator.Pokedex.Totals.DisplayTotals;
 import com.wvaviator.Pokedex.Totals.TotalsQuery;
 import com.wvaviator.Pokedex.Users.Chat;
@@ -214,6 +215,25 @@ public class PokedexCommand implements ICommand {
 				}
 				
 				DisplayTotals.displayTotals(tq);
+			}
+			
+		}
+		
+		if (args[0].equalsIgnoreCase("top")) {
+			
+			if (args.length < 2 || args.length > 2) {
+				Chat.toChat(sender, Chat.topHelp);
+				return;
+			}
+			
+			String category = args[1];
+			
+			try {
+				
+				DisplayTop.displayTop(sender, category);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 			
 		}

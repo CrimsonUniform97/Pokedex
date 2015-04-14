@@ -51,7 +51,10 @@ public class Construction {
 	
 	public static void establishTotalsTable() throws SQLException {
 		
-		String update = "CREATE TABLE totals (uuid VARCHAR(40), captured INT NOT NULL, deleted INT NOT NULL, received INT NOT NULL, traded INT NOT NULL, evolved INT NOT NULL, shiny INT NOT NULL, legendary INT NOT NULL, PRIMARY KEY (uuid))";
+		String update = "CREATE TABLE totals (uuid VARCHAR(40), captured INT NOT NULL, "
+				+ "deleted INT NOT NULL, received INT NOT NULL, traded INT NOT NULL, "
+				+ "evolved INT NOT NULL, shiny INT NOT NULL, legendary INT NOT NULL, "
+				+ "PRIMARY KEY (uuid))";
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		
