@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.wvaviator.Pokedex.Pokedex;
+import com.wvaviator.Pokedex.Database.Database;
 import com.wvaviator.Pokedex.Users.Chat;
 import com.wvaviator.Pokedex.Users.UUIDManager;
 
@@ -23,37 +24,44 @@ public class DisplayTop {
 		
 		String display = EnumChatFormatting.AQUA + header;
 		
-		ResultSet rs = null;
-		if (category.equalsIgnoreCase("captured")) rs = TopDataRetrieval.getTopCaptured();
-		if (category.equalsIgnoreCase("deleted")) rs = TopDataRetrieval.getTopDeleted();
-		if (category.equalsIgnoreCase("received")) rs = TopDataRetrieval.getTopReceived();
-		if (category.equalsIgnoreCase("evolved")) rs = TopDataRetrieval.getTopEvolved();
-		if (category.equalsIgnoreCase("traded")) rs = TopDataRetrieval.getTopTraded();
-		if (category.equalsIgnoreCase("shiny")) rs = TopDataRetrieval.getTopShiny();
-		if (category.equalsIgnoreCase("legendary")) rs = TopDataRetrieval.getTopLegendary();
+		try {
 		
-		if (!rs.next()) {
-			Chat.toChat(sender,Chat.noResults);
-			return;
-		}
+			ResultSet rs = null;
+			if (category.equalsIgnoreCase("captured")) rs = TopDataRetrieval.getTopCaptured();
+			if (category.equalsIgnoreCase("deleted")) rs = TopDataRetrieval.getTopDeleted();
+			if (category.equalsIgnoreCase("received")) rs = TopDataRetrieval.getTopReceived();
+			if (category.equalsIgnoreCase("evolved")) rs = TopDataRetrieval.getTopEvolved();
+			if (category.equalsIgnoreCase("traded")) rs = TopDataRetrieval.getTopTraded();
+			if (category.equalsIgnoreCase("shiny")) rs = TopDataRetrieval.getTopShiny();
+			if (category.equalsIgnoreCase("legendary")) rs = TopDataRetrieval.getTopLegendary();
 		
-		for (int i = 1; i < 11; i++) {
-			
-			if (rs.getString("uuid").equalsIgnoreCase("SERVER")) {
-				if (!rs.next()) break;
-				continue;
+			if (!rs.next()) {
+				Chat.toChat(sender,Chat.noResults);
+				return;
 			}
+		
+			for (int i = 1; i < 11; i++) {
 			
-			display += "\n" + EnumChatFormatting.AQUA;
-			display += i + ". " + EnumChatFormatting.GOLD + UUIDManager.getUsername(rs.getString("uuid"));
-			display += "    " + EnumChatFormatting.AQUA + rs.getInt(category.toLowerCase());
-			display += " " + category.toLowerCase() + "\n";
-			if (!rs.next()) break;
+				if (rs.getString("uuid").equalsIgnoreCase("SERVER")) {
+					if (!rs.next()) break;
+					continue;
+				}
 			
+				display += "\n" + EnumChatFormatting.AQUA;
+				display += i + ". " + EnumChatFormatting.GOLD + UUIDManager.getUsername(rs.getString("uuid"));
+				display += "    " + EnumChatFormatting.AQUA + rs.getInt(category.toLowerCase());
+				display += " " + category.toLowerCase() + "\n";
+				if (!rs.next()) break;
+			
+			}
+		
+			Chat.toChat(sender, display);
+		
+		} finally {
+		
+		Database.closeConnection();
+		
 		}
-		
-		Chat.toChat(sender, display);
-		
 	}
 
 	private static String designHeader(String category) {

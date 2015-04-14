@@ -1,9 +1,11 @@
 package com.wvaviator.Pokedex.Users;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -70,17 +72,25 @@ public class UUIDManager {
 		String uuid = player.getUniqueID().toString();
 		String username = player.getName();
 		String ip = player.getPlayerIP();
+		Timestamp time = new Timestamp(System.currentTimeMillis());
 		
-		String update = "INSERT INTO players VALUES ('" + uuid + "', '" + username + "', '" + ip + "')";
+		String update = "INSERT INTO players VALUES (?, ?, ?, ?, ?)";
 		
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		Connection c = Database.getConnection();
 		
 		
 		try {
 			
-			stmt = c.createStatement();
-			stmt.executeUpdate(update);
+			stmt = c.prepareStatement(update);
+			
+			stmt.setString(1, uuid);
+			stmt.setString(2, username);
+			stmt.setString(3, ip);
+			stmt.setInt(4, 0);
+			stmt.setTimestamp(5, time);
+			
+			stmt.execute();
 			
 		} finally {
 			stmt.close();

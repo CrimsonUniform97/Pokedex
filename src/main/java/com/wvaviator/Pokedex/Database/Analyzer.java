@@ -46,6 +46,19 @@ public class Analyzer {
 		
 	}
 	
+	public static boolean cheatsTableExists() {
+		
+		try {
+			
+			return tableExists("cheatlogs");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	private static boolean tableExists(String table) throws SQLException {
 		
 		Connection c = Database.getConnection();

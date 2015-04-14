@@ -96,6 +96,18 @@ public class Database {
 			
 		}
 		
+		if (Analyzer.cheatsTableExists() == false) {
+			
+			try {
+				
+				Construction.establishCheatLogTable();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 
 	public static void createDatabase() {

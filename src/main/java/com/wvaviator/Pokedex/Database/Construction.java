@@ -8,7 +8,8 @@ public class Construction {
 	
 	public static void establishPlayerTable() throws SQLException {
 		
-		String update = "CREATE TABLE players (uuid VARCHAR(40), name VARCHAR(20), ip VARCHAR(20), PRIMARY KEY (uuid))";
+		String update = "CREATE TABLE players (uuid VARCHAR(40), name VARCHAR(20), "
+				+ "ip VARCHAR(20), cf INT NOT NULL, datejoined TIMESTAMP, PRIMARY KEY (uuid))";
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		
@@ -75,6 +76,26 @@ public class Construction {
 	private static void addServerTotals() throws SQLException {
 		
 		String update = "INSERT INTO totals VALUES ('SERVER', 0, 0, 0, 0, 0, 0, 0)";
+		Connection c = Database.getConnection();
+		Statement stmt = null;
+		
+		try {
+			
+			stmt = c.createStatement();
+			stmt.executeUpdate(update);
+
+		} finally {
+			stmt.close();
+			c.close();
+		}
+		
+	}
+	
+	public static void establishCheatLogTable() throws SQLException {
+		
+		String update = "CREATE TABLE cheatlogs (id INTEGER PRIMARY KEY AUTO_INCREMENT, "
+						+ "uuid VARCHAR(40), cheat VARCHAR(20), "
+						+ "time TIMESTAMP)";
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		
