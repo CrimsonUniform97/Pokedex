@@ -14,8 +14,6 @@ public class DeleteHandler {
 	@SubscribeEvent
 	public void onPixelmonDelete(PixelmonDeletedEvent e) {
 		
-		Pokedex.logger.info(e.player.getName() + " deleted a " + e.pokemon.getString("Name"));
-		
 		EntityPlayerMP player = e.player;
 		NBTTagCompound poke = e.pokemon;
 		

@@ -18,7 +18,6 @@ public class DataRetrieval {
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		String query = generateQueryString(pdq, "SELECT * FROM pixelmonlogs");
-		Pokedex.logger.info(query + " ");
 	
 			stmt = c.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = stmt.executeQuery(query);

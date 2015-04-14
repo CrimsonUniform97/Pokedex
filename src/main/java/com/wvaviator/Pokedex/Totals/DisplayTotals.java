@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import net.minecraft.util.EnumChatFormatting;
 
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Configuration.PokedexConfiguration;
 import com.wvaviator.Pokedex.Users.Chat;
 import com.wvaviator.Pokedex.Users.UUIDManager;
@@ -88,6 +89,8 @@ public class DisplayTotals {
 				EnumChatFormatting.AQUA + "Total Received: " + EnumChatFormatting.GREEN + tq.getReceived() + "\n" +
 				EnumChatFormatting.AQUA + "Total Evolved: " + EnumChatFormatting.GREEN + tq.getEvolved() + "\n" +
 				EnumChatFormatting.AQUA + "Total Traded: " + EnumChatFormatting.GREEN + tq.getTraded() + "\n";
+		
+		Chat.toChat(tq.getSender(), totalsString);
 		
 	}
 	

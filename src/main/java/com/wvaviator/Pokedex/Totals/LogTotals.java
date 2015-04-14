@@ -33,12 +33,12 @@ public class LogTotals {
 		int totalCaptured = retrieve(uuid, "captured") + 1;
 		store(uuid, "captured", totalCaptured);
 		
-		if (isShiny) {
+		if (isShiny == true) {
 			int totalShiny = retrieve(uuid, "shiny") + 1;
 			store(uuid, "shiny", totalShiny);
 		}
 		
-		if (isLegendary) {
+		if (isLegendary == true) {
 			int totalLegendary = retrieve(uuid, "legendary") + 1;
 			store(uuid, "legendary", totalLegendary);
 		}

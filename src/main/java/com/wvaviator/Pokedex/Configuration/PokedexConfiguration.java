@@ -28,12 +28,12 @@ public class PokedexConfiguration {
 		Property shinyPercent = config.get("Player Totals", "Shiny Captures Warning Ratio", 0.05);
 		minimumShinyRatio = shinyPercent.getDouble();
 		shinyPercent.comment = "This is the ratio of total captures to shiny Pixelmon captures at which admins will be warned"
-				+ " that the player may be cheating";
+				+ " that the player may be cheating. Default is 5%";
 		
 		Property legendaryPercent = config.get("Player Totals", "Legendary Captures Warning Ratio", 0.02);
-		minimumShinyRatio = legendaryPercent.getDouble();
+		minimumLegendaryRatio = legendaryPercent.getDouble();
 		legendaryPercent.comment = "This is the ratio of total captures to legendary Pixelmon captures at which admins will be warned"
-				+ " that the player may be cheating";
+				+ " that the player may be cheating. Default is 2%";
 		
 		config.save();
 	}

@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.EnumChatFormatting;
 
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Database.Database;
 
 public class TotalsQuery {
@@ -86,8 +87,8 @@ public class TotalsQuery {
 	}
 	
 	public double getRatioShiny() {
-		int shiny = this.shiny;
-		int total = this.captured;	
+		double shiny = this.shiny;
+		double total = this.captured;	
 		double ratio = shiny / total;
 		return ratio;
 	}
@@ -99,8 +100,8 @@ public class TotalsQuery {
 	}
 	
 	public double getRatioLegendary() {
-		int legendary = this.legendary;
-		int total = this.captured;	
+		double legendary = this.legendary;
+		double total = this.captured;	
 		double ratio = legendary / total;
 		return ratio;
 	}
