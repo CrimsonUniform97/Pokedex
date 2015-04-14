@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.text.DecimalFormat;
 
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.EnumChatFormatting;
 
 import com.wvaviator.Pokedex.Database.Database;
 
@@ -108,6 +109,14 @@ public class TotalsQuery {
 		DecimalFormat df = new DecimalFormat("#%");
 		String formatted = df.format(getRatioLegendary());
 		return formatted;
+	}
+
+	public int getShiny() {
+		return this.shiny;
+	}
+	
+	public int getLegendary() {
+		return this.legendary;
 	}
 
 }

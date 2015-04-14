@@ -64,6 +64,7 @@ public class PokedexLog {
 			
 			storeData(uuid, action, poke, additional, isShiny);
 			LogTotals.addCaptured(uuid, isShiny, isLegendary);
+			LogTotals.addCaptured("SERVER", isShiny, isLegendary);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,6 +94,7 @@ public class PokedexLog {
 			
 			storeData(uuid, action, pokemon, additional, isShiny);
 			LogTotals.addDeleted(uuid);
+			LogTotals.addDeleted("SERVER");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,6 +115,7 @@ public class PokedexLog {
 			
 			storeData(uuid, action, pokemon, additional, isShiny);
 			LogTotals.addEvolved(uuid);
+			LogTotals.addEvolved("SERVER");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,6 +136,7 @@ public class PokedexLog {
 			
 			storeData(uuid, action, poke, additional, isShiny);
 			LogTotals.addReceived(uuid);
+			LogTotals.addReceived("SERVER");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -170,6 +174,7 @@ public class PokedexLog {
 			storeData(uuid2, action2, poke, additional2, isShiny);
 			LogTotals.addTraded(uuid2);
 			LogTotals.addTraded(uuid);
+			LogTotals.addTraded("SERVER");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

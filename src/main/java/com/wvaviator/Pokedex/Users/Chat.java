@@ -21,6 +21,9 @@ public class Chat {
 								+ EnumChatFormatting.GOLD + "/help" + EnumChatFormatting.AQUA + " for command information.";
 	public static String noResults = EnumChatFormatting.AQUA + "No results found!";
 	public static String deleting = EnumChatFormatting.AQUA + "Deleting entries with the specified parameters.";
+	public static String totalsHelp = EnumChatFormatting.AQUA + "Commands for finding player or server "
+								+ "totals: \n" + EnumChatFormatting.GOLD + "/pokedex totals <playername>\n" + 
+								EnumChatFormatting.GOLD + "/pokedex totals server";
 	
 	
 	

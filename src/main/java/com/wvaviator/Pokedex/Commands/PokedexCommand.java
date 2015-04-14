@@ -11,7 +11,10 @@ import com.wvaviator.Pokedex.Interpreter.PrintLogs;
 import com.wvaviator.Pokedex.Interpreter.PurgeLogs;
 import com.wvaviator.Pokedex.Logging.PokedexLog;
 import com.wvaviator.Pokedex.Logging.PokedexQuery;
+import com.wvaviator.Pokedex.Totals.DisplayTotals;
+import com.wvaviator.Pokedex.Totals.TotalsQuery;
 import com.wvaviator.Pokedex.Users.Chat;
+import com.wvaviator.Pokedex.Users.UUIDManager;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -162,6 +165,57 @@ public class PokedexCommand implements ICommand {
 			
 				if (pdq.isCanceled()) return;
 				PurgeLogs.purgeData(pdq);
+		}
+		
+		if (args[0].equalsIgnoreCase("totals") || args[0].equalsIgnoreCase("total")) {
+			
+			if (args.length < 2 || args.length > 2) {
+				Chat.toChat(sender, Chat.totalsHelp);
+				return;
+			}
+			
+			String uuid = null;
+			String username = null;
+			
+			if (args[1].equalsIgnoreCase("server")) {
+				uuid = "SERVER";
+				TotalsQuery tq = new TotalsQuery(uuid, sender);
+				
+				try {
+					tq.obtainValues();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				DisplayTotals.displayServerTotals(tq);
+				return;
+				
+			} else {
+				
+				username = args[1];
+				
+				try {
+					uuid = UUIDManager.getUUID(username);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				if (uuid == null) {
+					Chat.toChat(sender, Chat.playerNotFound);
+					return;
+				}
+				
+				TotalsQuery tq = new TotalsQuery(uuid, sender);
+				
+				try {
+					tq.obtainValues();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				DisplayTotals.displayTotals(tq);
+			}
+			
 		}
 		
 	}

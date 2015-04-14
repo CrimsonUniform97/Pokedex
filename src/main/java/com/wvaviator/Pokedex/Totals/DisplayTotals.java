@@ -76,5 +76,19 @@ public class DisplayTotals {
 		
 		
 	}
+
+	public static void displayServerTotals(TotalsQuery tq) {
+
+		String totalsString =
+				EnumChatFormatting.AQUA + "===== Server Totals =====\n\n" +
+				EnumChatFormatting.AQUA + "Total Captured: " + EnumChatFormatting.GREEN + tq.getCaptured() + "\n" +
+				EnumChatFormatting.AQUA + "   Total Shiny: " + EnumChatFormatting.GREEN + tq.getShiny() + "\n" +
+				EnumChatFormatting.AQUA + "   Total Legendary: " + EnumChatFormatting.GREEN + tq.getLegendary() + "\n" +
+				EnumChatFormatting.AQUA + "Total Deleted: " + EnumChatFormatting.GREEN + tq.getDeleted() + "\n" +
+				EnumChatFormatting.AQUA + "Total Received: " + EnumChatFormatting.GREEN + tq.getReceived() + "\n" +
+				EnumChatFormatting.AQUA + "Total Evolved: " + EnumChatFormatting.GREEN + tq.getEvolved() + "\n" +
+				EnumChatFormatting.AQUA + "Total Traded: " + EnumChatFormatting.GREEN + tq.getTraded() + "\n";
+		
+	}
 	
 }
