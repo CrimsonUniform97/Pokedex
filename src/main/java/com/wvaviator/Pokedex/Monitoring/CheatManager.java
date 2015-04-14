@@ -3,15 +3,16 @@ package com.wvaviator.Pokedex.Monitoring;
 import java.sql.SQLException;
 
 import com.wvaviator.Pokedex.Announcements.Notifications;
+import com.wvaviator.Pokedex.Configuration.PokedexConfiguration;
 import com.wvaviator.Pokedex.Users.IPManager;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class CheatManager {
 	
-	private static long pokeLootTime = 60000;
-	private static long shinyTime = 86400000;
-	private static long legendaryTime = 172800000;
+	private static long pokeLootTime = PokedexConfiguration.pokeLootTime;
+	private static long shinyTime = PokedexConfiguration.shinyTime;
+	private static long legendaryTime = PokedexConfiguration.legendaryTime;
 	private static long shrineTime = 86400000;
 	private static long bossTime = 1200000;
 	private static int maxCf = 100;

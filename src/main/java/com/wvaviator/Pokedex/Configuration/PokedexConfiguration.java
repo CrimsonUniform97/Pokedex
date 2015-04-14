@@ -15,6 +15,11 @@ public class PokedexConfiguration {
 	public static boolean announceShinies;
 	public static boolean announceLegendaries;
 	public static boolean announceAllPokemon;
+	public static long pokeLootTime;
+	public static long shinyTime;
+	public static long legendaryTime;
+	public static long bossTime;
+	public static long shrineTime;
 	
 	public static void loadConfig(Configuration config) {
 		
@@ -63,6 +68,26 @@ public class PokedexConfiguration {
 		announceAllPokemon = announceAll.getBoolean();
 		announceAll.comment = "If true, any time a Pixelmon is captured an announcement will be displayed";
 		
+		config.addCustomCategoryComment("AntiCheat Features", "Changing these settings will fine tune"
+				+ " cheat detection based on your server's need");
+		
+		Property pokeLoot = config.get("AntiCheat Features", "Minimum Time Between Pokeloot Claims in Seconds", 120);
+		pokeLootTime = pokeLoot.getInt() * 1000;
+		pokeLoot.comment = "If this time period does not pass between a player claiming PokeLoot, they may be"
+				+ " flagged for cheating. Decrease this if you are getting false cheat notifications. Set this to"
+				+ " 0 to disable checking PokeLoot claims.";
+		
+		Property shinyCheat = config.get("AntiCheat Features", "Minimum Time Between Shiny Captures in Minutes", 1440);
+		shinyTime = shinyCheat.getInt() * 60000;
+		shinyCheat.comment = "If this time period does not pass between capturing shiny Pixelmon, "
+				+ "a player may flag for cheating. Decrease this if shiny Pixelmon are more common"
+				+ " on your server. Set this to 0 to disable checking shiny captures.";
+		
+		Property legendaryCheat = config.get("AntiCheat Features", "Minimum Time Between Legendary Captures in Minutes", 2880);
+		legendaryTime = legendaryCheat.getInt() * 60000;
+		legendaryCheat.comment = "If this time period does not pass between catching Legendary Pixelmon"
+				+ " a player may flag for cheating. Decrease this is Legendary Pixelmon are more common"
+				+ " on your server. Set this to 0 to disable checking Legendary captures.";
 		
 		config.save();
 	}

@@ -18,7 +18,8 @@ public class CommandHelp {
 					+ EnumChatFormatting.GOLD + "/pokedex print <parameters>" + EnumChatFormatting.AQUA + " Print logs to a text file using" + EnumChatFormatting.AQUA + " the specified flags\n"
 					+ EnumChatFormatting.GOLD + "/pokedex purge <parameters>" + EnumChatFormatting.AQUA + " Delete all entries found with" + EnumChatFormatting.AQUA + " the specified flags\n"
 					+ EnumChatFormatting.GOLD + "/pokedex totals <server/playername>" + EnumChatFormatting.AQUA + " Show totals for a specific" + EnumChatFormatting.AQUA + " player or for the entire server\n"
-					+ EnumChatFormatting.GOLD + "/pokedex top <category>" + EnumChatFormatting.AQUA + " Display a list of top players in a category\n";
+					+ EnumChatFormatting.GOLD + "/pokedex top <category>" + EnumChatFormatting.AQUA + " Display a list of top players in a category\n"
+					+ EnumChatFormatting.GOLD + "/pokedex cheat <top/player>" + EnumChatFormatting.AQUA + " Display top potential cheaters " + EnumChatFormatting.AQUA + "or a cheat report for a specific player\n";
 	private static String flagsHelp =
 					  EnumChatFormatting.AQUA + "===== Pokedex Flags =====\n\n"
 					+ EnumChatFormatting.GOLD + "-u <player>" + EnumChatFormatting.AQUA + " Search entries matching a specific player\n"
