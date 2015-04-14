@@ -25,8 +25,13 @@ public class TopCheaters {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
-			for (int i = 1; i < 11; i++) {
+			if (!rs.next()) {
+				Chat.toChat(sender, Chat.noResults);
+				return;
+			}
 			
+			for (int i = 1; i < 11; i++) {
+				
 				display += "\n" + EnumChatFormatting.AQUA;
 				display += i + ". " + EnumChatFormatting.GOLD + UUIDManager.getUsername(rs.getString("uuid"));
 				display += "    " + EnumChatFormatting.AQUA + rs.getInt("cf") + "%";

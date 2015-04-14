@@ -29,9 +29,16 @@ public class CheatReport {
 			stmt = c.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = stmt.executeQuery(query);
 			
-			rs.last();
+			if (!rs.next()) {
+				Chat.toChat(sender, Chat.noResults);
+				return;
+			}
 			
-			int count = rs.getRow();
+			int count = 0;
+			do {
+				count++;
+			} while (rs.next());
+
 			int reduce = PokedexConfiguration.minimumDisplay;
 			
 			if (count < reduce) reduce = count;

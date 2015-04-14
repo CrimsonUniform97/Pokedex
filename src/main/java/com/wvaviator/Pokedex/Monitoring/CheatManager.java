@@ -66,6 +66,7 @@ public class CheatManager {
 		double newCf = cheatChance * 100;
 		
 		cf.addToCF((int) newCf);
+		if (cf.getCF() >= maxCf ) Notifications.notifyOfCheat(cheat);
 		
 		try {
 			CheatData.logCheat(cheat);
@@ -94,6 +95,7 @@ public class CheatManager {
 		double newCf = cheatChance * 100;
 		
 		cf.addToCF((int) newCf);
+		if (cf.getCF() >= maxCf ) Notifications.notifyOfCheat(cheat);
 		
 		try {
 			CheatData.logCheat(cheat);
@@ -122,6 +124,7 @@ public class CheatManager {
 		double newCf = cheatChance * 50;
 		
 		cf.addToCF((int) newCf);
+		if (cf.getCF() >= maxCf ) Notifications.notifyOfCheat(cheat);
 		
 		try {
 			CheatData.logCheat(cheat);
@@ -150,6 +153,7 @@ public class CheatManager {
 		double newCf = cheatChance * 40;
 		
 		cf.addToCF((int) newCf);
+		if (cf.getCF() >= maxCf ) Notifications.notifyOfCheat(cheat);
 		
 		try {
 			CheatData.logCheat(cheat);

@@ -12,6 +12,7 @@ import com.wvaviator.Pokedex.Handlers.CaptureHandler;
 import com.wvaviator.Pokedex.Handlers.DeleteHandler;
 import com.wvaviator.Pokedex.Handlers.EvolveHandler;
 import com.wvaviator.Pokedex.Handlers.LoginHandler;
+import com.wvaviator.Pokedex.Handlers.PokeLootHandler;
 import com.wvaviator.Pokedex.Handlers.ReceiveHandler;
 import com.wvaviator.Pokedex.Handlers.TradeHandler;
 
@@ -66,6 +67,7 @@ public class Pokedex {
 		Pixelmon.EVENT_BUS.register(new TradeHandler());
 		Pixelmon.EVENT_BUS.register(new EvolveHandler());
 		Pixelmon.EVENT_BUS.register(new DeleteHandler());
+		Pixelmon.EVENT_BUS.register(new PokeLootHandler());
 		
 		MinecraftForge.EVENT_BUS.register(new LoginHandler());
 		
