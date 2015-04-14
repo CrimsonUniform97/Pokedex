@@ -10,6 +10,11 @@ public class PokedexConfiguration {
 	public static int minimumDisplay;
 	public static double minimumShinyRatio;
 	public static double minimumLegendaryRatio;
+	public static boolean announceForAll;
+	public static boolean announceForAdmins;
+	public static boolean announceShinies;
+	public static boolean announceLegendaries;
+	public static boolean announceAllPokemon;
 	
 	public static void loadConfig(Configuration config) {
 		
@@ -34,6 +39,30 @@ public class PokedexConfiguration {
 		minimumLegendaryRatio = legendaryPercent.getDouble();
 		legendaryPercent.comment = "This is the ratio of total captures to legendary Pixelmon captures at which admins will be warned"
 				+ " that the player may be cheating. Default is 2%";
+		
+		config.addCustomCategoryComment("Announcements", "Settings for Displaying Announcements");
+		
+		Property announceP = config.get("Announcements", "Announce Captures to All Players", false);
+		announceForAll = announceP.getBoolean();
+		announceP.comment = "If true, an announcement will display for all players online when another player"
+				+ " captures a Pixelmon";
+		
+		Property announceA = config.get("Announcements", "Announce Captures to Admins", true);
+		announceForAdmins = announceA.getBoolean();
+		announceA.comment = "If true, admins will receive announcements when players capture Pixelmon";
+		
+		Property announceShiny = config.get("Announcements", "Announce When Shiny Pixelmon are Captured", true);
+		announceShinies = announceShiny.getBoolean();
+		announceShiny.comment = "If true, captures of shiny Pixelmon will be announced";
+		
+		Property announceLegendary = config.get("Announcements", "Announce When Legendary Pixelmon are Captured", true);
+		announceLegendaries = announceLegendary.getBoolean();
+		announceLegendary.comment = "If true, captures of Legendary Pixelmon will be announced";
+		
+		Property announceAll = config.get("Announcements", "Announce the Capture of Any Pixelmon", false);
+		announceAllPokemon = announceAll.getBoolean();
+		announceAll.comment = "If true, any time a Pixelmon is captured an announcement will be displayed";
+		
 		
 		config.save();
 	}
