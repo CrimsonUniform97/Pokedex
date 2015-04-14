@@ -3,6 +3,7 @@ package com.wvaviator.Pokedex.Top;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.wvaviator.Pokedex.Pokedex;
 import com.wvaviator.Pokedex.Users.Chat;
 import com.wvaviator.Pokedex.Users.UUIDManager;
 
@@ -36,13 +37,17 @@ public class DisplayTop {
 			return;
 		}
 		
-		for(int i = 0; i == 10; i++) {
+		for (int i = 1; i < 11; i++) {
+			
+			if (rs.getString("uuid").equalsIgnoreCase("SERVER")) {
+				if (!rs.next()) break;
+				continue;
+			}
 			
 			display += "\n" + EnumChatFormatting.AQUA;
 			display += i + ". " + EnumChatFormatting.GOLD + UUIDManager.getUsername(rs.getString("uuid"));
 			display += "    " + EnumChatFormatting.AQUA + rs.getInt(category.toLowerCase());
 			display += " " + category.toLowerCase() + "\n";
-			
 			if (!rs.next()) break;
 			
 		}
