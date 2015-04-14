@@ -25,11 +25,6 @@ public class Announcer {
 		String announce = buildAnnouncement(ann);
 		Pokedex.logger.info(announce);
 		
-		if (annPShiny && annPLegends && ann.getIsShiny() && ann.getLegendary()) {
-			//On the off chance someone catches a shiny legendary, don't want two announcements
-			makeAnnouncement(announce);
-			return;
-		}
 		if (annPShiny && ann.getIsShiny()) {
 			makeAnnouncement(announce);
 			return;
@@ -42,9 +37,6 @@ public class Announcer {
 			makeAnnouncement(announce);
 			return;
 		}
-		
-		
-		
 		
 	}
 

@@ -69,8 +69,9 @@ public class UUIDManager {
 		
 		String uuid = player.getUniqueID().toString();
 		String username = player.getName();
+		String ip = player.getPlayerIP();
 		
-		String update = "INSERT INTO players VALUES ('" + uuid + "', '" + username + "')";
+		String update = "INSERT INTO players VALUES ('" + uuid + "', '" + username + "', '" + ip + "')";
 		
 		Statement stmt = null;
 		Connection c = Database.getConnection();

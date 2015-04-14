@@ -8,7 +8,7 @@ public class Construction {
 	
 	public static void establishPlayerTable() throws SQLException {
 		
-		String update = "CREATE TABLE players (uuid VARCHAR(40), name VARCHAR(20), PRIMARY KEY (uuid))";
+		String update = "CREATE TABLE players (uuid VARCHAR(40), name VARCHAR(20), ip VARCHAR(20), PRIMARY KEY (uuid))";
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		
