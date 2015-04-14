@@ -6,7 +6,8 @@ public enum CheatType {
 	SHINY("Shiny"), 
 	LEGENDARY("Legendary"), 
 	BOSS("Boss"), 
-	SHRINE("Shrine");
+	SHRINE("Shrine"),
+	IP("Same IP Trade");
 	
 	public String type;
 	

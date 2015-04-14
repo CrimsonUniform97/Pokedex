@@ -28,6 +28,8 @@ public class Chat {
 									"/pokedex top " + EnumChatFormatting.AQUA + "does not exist.\n" + EnumChatFormatting.AQUA +
 									"Please use " + EnumChatFormatting.GOLD + "/help top " + EnumChatFormatting.AQUA +
 									"for all available categories.";
+	public static String cheatHelp = EnumChatFormatting.AQUA + "Please use " + EnumChatFormatting.GOLD + "/pokedex cheat <player/top>"
+									+ EnumChatFormatting.AQUA + " for cheat reports.";
 	
 	
 	

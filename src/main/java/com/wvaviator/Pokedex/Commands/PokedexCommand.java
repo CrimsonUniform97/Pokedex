@@ -11,6 +11,8 @@ import com.wvaviator.Pokedex.Interpreter.PrintLogs;
 import com.wvaviator.Pokedex.Interpreter.PurgeLogs;
 import com.wvaviator.Pokedex.Logging.PokedexLog;
 import com.wvaviator.Pokedex.Logging.PokedexQuery;
+import com.wvaviator.Pokedex.Monitoring.CheatReport;
+import com.wvaviator.Pokedex.Monitoring.TopCheaters;
 import com.wvaviator.Pokedex.Top.DisplayTop;
 import com.wvaviator.Pokedex.Totals.DisplayTotals;
 import com.wvaviator.Pokedex.Totals.TotalsQuery;
@@ -232,6 +234,43 @@ public class PokedexCommand implements ICommand {
 				
 				DisplayTop.displayTop(sender, category);
 				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if (args[0].equalsIgnoreCase("cheat") || args[0].equalsIgnoreCase("cheats") || args[0].equalsIgnoreCase("cheaters")) {
+			
+			if (args.length < 2 || args.length > 2) {
+				Chat.toChat(sender, Chat.cheatHelp);
+				return;
+			}
+			
+			if (args[1].equalsIgnoreCase("top")) {
+				try {
+					TopCheaters.displayTopCheaters(sender);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return;
+			}
+			
+			String uuid = null;
+			
+			try {
+				uuid = UUIDManager.getUUID(args[1]);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			if (uuid == null) {
+				Chat.toChat(sender, Chat.playerNotFound);
+				return;
+			}
+			
+			try {
+				CheatReport.displayCheatReport(sender, uuid);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

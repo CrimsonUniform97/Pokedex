@@ -2,6 +2,9 @@ package com.wvaviator.Pokedex.Monitoring;
 
 import java.sql.SQLException;
 
+import com.wvaviator.Pokedex.Announcements.Notifications;
+import com.wvaviator.Pokedex.Users.IPManager;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class CheatManager {
@@ -11,6 +14,7 @@ public class CheatManager {
 	private static long legendaryTime = 172800000;
 	private static long shrineTime = 86400000;
 	private static long bossTime = 1200000;
+	private static int maxCf = 100;
 	
 	
 	public static void pokeLootCheater(EntityPlayerMP player) {
@@ -33,6 +37,7 @@ public class CheatManager {
 		
 		cf.addToCF((int) newCf);
 		
+		if (cf.getCF() >= maxCf ) Notifications.notifyOfCheat(cheat);
 		
 		try {
 			CheatData.logCheat(cheat);
@@ -151,6 +156,48 @@ public class CheatManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public static void checkTrade(String uuid, String uuid2) {
+		
+		String ip = null;
+		String ip2 = null;
+		
+		try {
+			ip = IPManager.getIPFromUUID(uuid);
+			ip2 = IPManager.getIPFromUUID(uuid2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if (ip.equalsIgnoreCase(ip2)) {
+			
+			Cheat cheat = new Cheat(uuid, CheatType.IP);
+			Cheat cheat2 = new Cheat(uuid2, CheatType.IP);
+			
+			CheatFactor cf = new CheatFactor(uuid);
+			CheatFactor cf2 = new CheatFactor(uuid2);
+			
+			cf.addToCF(Math.abs(cf.getCF() - cf2.getCF()));
+			cf2.addToCF(Math.abs(cf.getCF() - cf2.getCF()));
+			
+			cf.addToCF(10);
+			cf2.addToCF(10);
+			
+			try {
+				CheatData.logCheat(cheat);
+				CheatData.logCheat(cheat2);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			if (cf.getCF() >= maxCf) {
+				Notifications.notifyOfCheat(cheat);
+			}
+			
+		}
+		
 		
 	}
 

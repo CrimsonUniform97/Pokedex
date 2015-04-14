@@ -14,6 +14,7 @@ import com.pixelmonmod.pixelmon.api.events.ReceiveType;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import com.pixelmonmod.pixelmon.enums.EnumPokemon;
 import com.wvaviator.Pokedex.Database.Database;
+import com.wvaviator.Pokedex.Monitoring.CheatManager;
 import com.wvaviator.Pokedex.Totals.LogTotals;
 import com.wvaviator.Pokedex.Users.UUIDManager;
 
@@ -58,6 +59,9 @@ public class PokedexLog {
 		String additional = ".";
 		boolean isShiny = pokemon.getIsShiny();
 		boolean isLegendary = getIsLegendary(pokemon);
+		
+		if (isShiny) CheatManager.shinyCheater(player);
+		if (isLegendary) CheatManager.legendaryCheater(player);
 		
 		
 		try {
@@ -161,6 +165,8 @@ public class PokedexLog {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		CheatManager.checkTrade(uuid, uuid2);
 		
 		boolean isShiny = pokemon.getBoolean("IsShiny");
 		boolean isShiny2 = pokemon2.getBoolean("IsShiny");
