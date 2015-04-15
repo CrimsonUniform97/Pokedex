@@ -11,8 +11,8 @@ public class Chat {
 
 	public static String playerNotFound = EnumChatFormatting.AQUA + "Player not found!";
 	public static String pokeNotFound = EnumChatFormatting.AQUA + "Pokemon not found!";
-	public static String invalidAction = EnumChatFormatting.AQUA + "The specified action is not valid!\nPlease use " 
-										+ EnumChatFormatting.GOLD + "/pokedex flags action " + EnumChatFormatting.AQUA + 
+	public static String invalidAction = EnumChatFormatting.AQUA + "The specified action is not valid!\n" + EnumChatFormatting.AQUA + "Please use " 
+										+ EnumChatFormatting.GOLD + "/pokedex help actions " + EnumChatFormatting.AQUA + 
 										"to see available actions.";
 	public static String invalidDate = EnumChatFormatting.AQUA + "Could not read date flag!\n"
 									+ "The correct format is " + EnumChatFormatting.GOLD + "DDMMYY";
@@ -26,7 +26,7 @@ public class Chat {
 								EnumChatFormatting.GOLD + "/pokedex totals server";
 	public static String topHelp = EnumChatFormatting.AQUA + "The category specified for " + EnumChatFormatting.GOLD +
 									"/pokedex top " + EnumChatFormatting.AQUA + "does not exist.\n" + EnumChatFormatting.AQUA +
-									"Please use " + EnumChatFormatting.GOLD + "/help top " + EnumChatFormatting.AQUA +
+									"Please use " + EnumChatFormatting.GOLD + "/pokedex help top " + EnumChatFormatting.AQUA +
 									"for all available categories.";
 	public static String cheatHelp = EnumChatFormatting.AQUA + "Please use " + EnumChatFormatting.GOLD + "/pokedex cheat <player/top>"
 									+ EnumChatFormatting.AQUA + " for cheat reports.";
