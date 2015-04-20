@@ -184,12 +184,6 @@ public class PokedexCommand implements ICommand {
 				uuid = "SERVER";
 				TotalsQuery tq = new TotalsQuery(uuid, sender);
 				
-				try {
-					tq.obtainValues();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
 				DisplayTotals.displayServerTotals(tq);
 				return;
 				
@@ -209,12 +203,6 @@ public class PokedexCommand implements ICommand {
 				}
 				
 				TotalsQuery tq = new TotalsQuery(uuid, sender);
-				
-				try {
-					tq.obtainValues();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 				
 				DisplayTotals.displayTotals(tq);
 			}

@@ -33,7 +33,7 @@ public class CheatManager {
 		}
 		
 		double cheatChance = pokeLootTime / timeSince;
-		if (timeSince > 1) timeSince = 1;
+		if (cheatChance > 1) cheatChance = 1;
 		double newCf = cheatChance * 20;
 		
 		cf.addToCF((int) newCf);
@@ -63,7 +63,7 @@ public class CheatManager {
 		}
 		
 		double cheatChance = shinyTime / timeSince;
-		if (timeSince > 1) timeSince = 1;
+		if (cheatChance > 1) cheatChance = 1;
 		double newCf = cheatChance * 100;
 		
 		cf.addToCF((int) newCf);
@@ -92,7 +92,7 @@ public class CheatManager {
 		}
 		
 		double cheatChance = legendaryTime / timeSince;
-		if (timeSince > 1) timeSince = 1;
+		if (cheatChance > 1) cheatChance = 1;
 		double newCf = cheatChance * 100;
 		
 		cf.addToCF((int) newCf);
@@ -121,7 +121,7 @@ public class CheatManager {
 		}
 		
 		double cheatChance = bossTime / timeSince;
-		if (timeSince > 1) timeSince = 1;
+		if (cheatChance > 1) cheatChance = 1;
 		double newCf = cheatChance * 50;
 		
 		cf.addToCF((int) newCf);
@@ -150,7 +150,7 @@ public class CheatManager {
 		}
 		
 		double cheatChance = shrineTime / timeSince;
-		if (timeSince > 1) timeSince = 1;
+		if (cheatChance > 1) cheatChance = 1;
 		double newCf = cheatChance * 40;
 		
 		cf.addToCF((int) newCf);

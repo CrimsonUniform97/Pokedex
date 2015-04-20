@@ -26,10 +26,17 @@ public class TotalsQuery {
 	
 	public TotalsQuery(String uuid, ICommandSender querier) {
 		this.uuid = uuid;
-		this.querier = querier;
+		this.querier = querier;	
+		
+		try {
+			obtainValues();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
 	}
 	
-	public void obtainValues() throws SQLException {
+	private void obtainValues() throws SQLException {
 		Connection c = Database.getConnection();
 		Statement stmt = null;
 		String query = "SELECT * FROM totals WHERE uuid = '" + this.uuid + "'";

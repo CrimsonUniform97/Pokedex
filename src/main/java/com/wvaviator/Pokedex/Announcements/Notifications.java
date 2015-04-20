@@ -24,7 +24,7 @@ public class Notifications {
 		
 		String cheater = EnumChatFormatting.GOLD + name + 
 				EnumChatFormatting.AQUA + " may be cheating! Use " + EnumChatFormatting.GOLD +
-				"/pokedex cheat " + name + EnumChatFormatting.AQUA + " for" + EnumChatFormatting.AQUA + " more information";
+				"/pokedex cheat " + name + EnumChatFormatting.AQUA + " for " + EnumChatFormatting.AQUA + "more information";
 		
 		List<EntityPlayerMP> playerList = (List<EntityPlayerMP>) MinecraftServer.getServer().getConfigurationManager().playerEntityList;
 		for ( EntityPlayerMP onlinePlayer : playerList ) {			
