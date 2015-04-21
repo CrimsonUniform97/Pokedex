@@ -69,7 +69,7 @@ public class CheatReport {
 
 	private static void displayHeader(ICommandSender sender, String name) {
 		
-		String header = EnumChatFormatting.AQUA + "===== Cheat Report for " + name + " =====\n\n";		
+		String header = EnumChatFormatting.AQUA + "===== Cheat Report for " + name + " =====\n";		
 		Chat.toChat(sender, header);
 		
 	}
