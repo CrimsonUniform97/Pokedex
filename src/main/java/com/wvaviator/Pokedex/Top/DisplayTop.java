@@ -44,13 +44,14 @@ public class DisplayTop {
 			
 				if (rs.getString("uuid").equalsIgnoreCase("SERVER")) {
 					if (!rs.next()) break;
+					i--;
 					continue;
 				}
 			
 				display += "\n" + EnumChatFormatting.AQUA;
 				display += i + ". " + EnumChatFormatting.GOLD + UUIDManager.getUsername(rs.getString("uuid"));
 				display += "    " + EnumChatFormatting.AQUA + rs.getInt(category.toLowerCase());
-				display += " " + category.toLowerCase() + "\n";
+				display += " " + category.toLowerCase();
 				if (!rs.next()) break;
 			
 			}

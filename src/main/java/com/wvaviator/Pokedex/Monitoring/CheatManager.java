@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import com.wvaviator.Pokedex.Announcements.Notifications;
 import com.wvaviator.Pokedex.Configuration.PokedexConfiguration;
+import com.wvaviator.Pokedex.Totals.TotalsQuery;
 import com.wvaviator.Pokedex.Users.IPManager;
 
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -151,7 +152,7 @@ public class CheatManager {
 		
 		double cheatChance = shrineTime / timeSince;
 		if (cheatChance > 1) cheatChance = 1;
-		double newCf = cheatChance * 40;
+		double newCf = cheatChance * 20;
 		
 		cf.addToCF((int) newCf);
 		if (cf.getCF() >= maxCf ) Notifications.notifyOfCheat(cheat);
